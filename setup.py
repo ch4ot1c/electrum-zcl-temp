@@ -41,10 +41,11 @@ setup(
         'pbkdf2',
         'requests',
         'qrcode',
+	'ltc_scrypt',
+	'lyra2re2_hash',
         'protobuf',
         'dnspython',
         'jsonrpclib',
-        'pyblake2',
         'PySocks>=1.6.6',
     ],
     packages=[
