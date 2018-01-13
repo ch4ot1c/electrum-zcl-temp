@@ -40,8 +40,8 @@ import pyaes
 # Zclassic network constants
 TESTNET = False
 NOLNET = False
-ADDRTYPE_P2PKH = 71 #ZCL PUBKEY_ADDRESS = (0x1C,0xB8)  when base58 encoded, are "t1" https://github.com/z-classic/zclassic/blob/master/src/chainparams.cpp#L103
-ADDRTYPE_P2SH = 05 #ZCL  SCRIPT_ADDRESS = (0x1C,0xBD)  when base58 encoded, are "t3" 
+ADDRTYPE_P2PKH = 71 # TODO ZCL PUBKEY_ADDRESS = (0x1C,0xB8)  when base58 encoded, are "t1" https://github.com/z-classic/zclassic/blob/master/src/chainparams.cpp#L103
+ADDRTYPE_P2SH = 05 #TODO ZCL  SCRIPT_ADDRESS = (0x1C,0xBD)  when base58 encoded, are "t3" 
 ADDRTYPE_P2SH_ALT = 63 #rm 
 ADDRTYPE_P2WPKH = 128 #rm no segwit "YET" 
 ADDRTYPE_SECRET = 128 #same as zcl (0x80)
