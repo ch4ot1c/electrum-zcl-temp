@@ -40,18 +40,21 @@ import pyaes
 # Zclassic network constants
 TESTNET = False
 NOLNET = False
-ADDRTYPE_P2PKH = 71
-ADDRTYPE_P2SH = 05
-ADDRTYPE_P2SH_ALT = 63
-ADDRTYPE_P2WPKH = 128
-ADDRTYPE_SECRET = 128
-XPRV_HEADER = 0x0488ade4
-XPUB_HEADER = 0x0488b21e
-#XPRV_HEADER_ALT = 0x019d9cfe
-#XPUB_HEADER_ALT = 0x019da462
-HEADERS_URL = "http://35.224.186.7/headers00"
+ADDRTYPE_P2PKH = 71 #ZCL PUBKEY_ADDRESS = (0x1C,0xB8)  when base58 encoded, are "t1" https://github.com/z-classic/zclassic/blob/master/src/chainparams.cpp#L103
+ADDRTYPE_P2SH = 05 #ZCL  SCRIPT_ADDRESS = (0x1C,0xBD)  when base58 encoded, are "t3" 
+ADDRTYPE_P2SH_ALT = 63 #rm 
+ADDRTYPE_P2WPKH = 128 #rm no segwit "YET" 
+ADDRTYPE_SECRET = 128 #same as zcl (0x80)
+XPRV_HEADER = 0x0488ade4 #xprv 	P2PKH or P2SH http://docs.electrum.org/en/latest/seedphrase.html#list-of-reserved-numbers
+XPUB_HEADER = 0x0488b21e #xpub 	
+#XPRV_HEADER_ALT = 0x019d9cfe rm
+#XPUB_HEADER_ALT = 0x019da462 rm
+HEADERS_URL = "http://35.224.186.7/"
 GENESIS = "0007104ccda289427919efc39dc9e4d499804b7bebc22df55f8b834301260602"
+#TODO ZCPAYMENT_ADDRRESS = (0x16,0x9A) when base58 encoded, are "zc" 
+#TODO ZCSPENDING_KEY = (0xAB,0x36) when base58 encoded, are "SK" 
 
+#rm
 '''
 def set_testnet():
     #ADDRTYPE_P2SH_ALT
@@ -72,7 +75,7 @@ def set_testnet():
     HEADERS_URL = "https://electrum-zcl.org/testnet_headers"
     GENESIS = "4966625a4b2851d9fdee139e56211a0d88575f59ed816ff5e6a63deb4e3e29a0"
 '''
-
+#rm
 def set_nolnet():
     global ADDRTYPE_P2PKH, ADDRTYPE_P2SH, ADDRTYPE_P2WPKH
     global XPRV_HEADER, XPUB_HEADER
@@ -89,7 +92,7 @@ def set_nolnet():
 
 
 
-################################## transactions
+##################################  transactions 
 
 DUST_SOFT_LIMIT = 100000
 MIN_RELAY_TX_FEE = 100000
