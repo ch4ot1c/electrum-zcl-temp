@@ -52,9 +52,8 @@ def serialize_header(res):
     return r
 
 
-def deserialize_header(s, height):
+def deserialize_header(f, height):
     hex_to_int = lambda s: int('0x' + s[::-1].encode('hex'), 16)
-    f = BytesIO(s)
     h = {}
     h['version'] = struct.unpack("<I", f.read(4))[0]
     h['prev_block_hash'] = deser_uint256(f)
@@ -152,8 +151,8 @@ class Blockchain(util.PrintError):
         self._size = os.path.getsize(p)/1484 if os.path.exists(p) else 0
 
     def verify_header(self, header, prev_header, bits, target, nonce, n_solution):
-        prev_hash = self.hash_header(prev_header)
-        _powhash = uint256_from_str(self.sha256_header(header))
+        prev_hash = self.sha256_header(prev_header)
+        _powhash = self.sha256_header(header)
         if prev_hash != header.get('prev_block_hash'):
             raise BaseException("prev hash mismatch: %s vs %s" % (prev_hash, header.get('prev_block_hash')))
         if bitcoin.TESTNET:
@@ -293,14 +292,17 @@ class Blockchain(util.PrintError):
             return self.parent().read_header(height)
         if height > self.height():
             return
-        delta = height - self.checkpoint
+
+        idx, h = 0, None
         name = self.path()
+
         if os.path.exists(name):
-            f = open(name, 'rb')
-            f.seek(delta * 1484)
-            h = f.read(1484)
+            while idx <= height:
+                f = open(name, 'rb')
+                h = deserialize_header(f, height)
+                idx += 1
             f.close()
-        return deserialize_header(h, height)
+        return h
 
     def get_hash(self, height):
         return self.hash_header(self.read_header(height))
